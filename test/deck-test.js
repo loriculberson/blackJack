@@ -1,22 +1,37 @@
 const assert = require('chai').assert;
 var expect = require('chai').expect;
-  // , deck = { hK: 10 };
-const Deck = require('../lib/deck');
+const deck = require('../lib/deck');
 
-describe('creation of deck', function () {
+describe('deck functionality', function () {
 
-  it('exits', function () {
-    assert(Deck);
+
+  it('exists', function () {
+    assert(deck);
   });
 
-  it('should construct a deck object', function () {
-    assert(new Deck());
+  it('starts with 9 cards', function () {
+    deck.shuffle();
+
+    assert.equal(deck.remainingCardCount(), 9);
   });
 
-  it('should return the correct value for a card', function () {
-    var deck = new Deck();
-
-    expect(deck).to.have.property('hK').to.eql(10);
+  it('pickCard removes card from deck', function () {
+    deck.shuffle();
+    deck.pickCard();
+    assert.equal(deck.remainingCardCount(), 8);
   });
+
+  it('shuffling deck resets the deck to a full set', function () {
+    deck.shuffle();
+    assert.equal(deck.remainingCardCount(), 9);
+    deck.pickCard();
+    deck.pickCard();
+    assert.equal(deck.remainingCardCount(), 7);
+    deck.shuffle();
+    assert.equal(deck.remainingCardCount(), 9);
+  });
+
 
 });
+
+
