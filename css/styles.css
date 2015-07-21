@@ -5,3 +5,7 @@ body {
 .card  {
 
 }
+
+.hide-card {
+  display: none;
+}
