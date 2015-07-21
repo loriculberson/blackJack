@@ -44,29 +44,38 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var $ = __webpack_require__(1);
-
-	var deck = [{ name: "A", suit: "Hearts", value: 11 }, { name: "K", suit: "Spades", value: 10 }, { name: "Q", suit: "Clubs", value: 10 }, { name: "Two", suit: "Hearts", value: 2 }, { name: "Four", suit: "Spades", value: 4 }, { name: "Seven", suit: "Clubs", value: 7 }, { name: "Jack", suit: "Hearts", value: 10 }, { name: "Three", suit: "Diamonds", value: 3 }, { name: "Ace", suit: "Diamonds", value: 11 }];
-
-	function dealCard() {
-	  var card = deck[Math.floor(Math.random() * deck.length)];
-	  deck.splice(Math.floor(Math.random() * deck.length), 1);
-	  return card;
-	}
+	__webpack_require__(2);
 
 	function dealCards() {
+	  dealDealerHand($('#dealer-hand'));
+	  dealPlayerHand($('#player-hand'));
+	}
+
+	function dealPlayerHand(whoseHand) {
 	  for (var i = 0; i < 2; i++) {
-	    var card = dealCard();
-	    var jCard = $("<li>" + card.name + " of " + card.suit + " Value" + card.value + "</li>");
-	    debugger;
-	    $("#player-hand").append(jCard);
+	    dealCard(whoseHand, false);
 	  }
 	}
 
+	function dealDealerHand(whoseHand) {
+	  dealCard(whoseHand, false);
+	  dealCard(whoseHand, true);
+	}
+
+	function dealCard(whoseHand, hidden) {
+	  var card = pickCard();
+	  var cardView = $('<li>' + card.name + ' of ' + card.suit + ' Value ' + card.value + '</li>');
+	  if (hidden) {
+	    cardView.addClass('hide-card');
+	  }
+	  whoseHand.append(cardView);
+	}
+
 	function addClickListenerToDealButton() {
-	  $("#deal_cards").on("click", dealCards);
+	  $('#deal_cards').on('click', dealCards);
 	}
 
 	addClickListenerToDealButton();
@@ -1523,6 +1532,21 @@
 	// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
 	// and CommonJS for browser emulators (#13566)
 	if(typeof noGlobal === strundefined){window.jQuery = window.$ = jQuery;}return jQuery;}); // Return just the one element from the set
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var cards = [{ name: "A", suit: "Hearts", value: 11 }, { name: "K", suit: "Spades", value: 10 }, { name: "Q", suit: "Clubs", value: 10 }, { name: "Two", suit: "Hearts", value: 2 }, { name: "Four", suit: "Spades", value: 4 }, { name: "Seven", suit: "Clubs", value: 7 }, { name: "Jack", suit: "Hearts", value: 10 }, { name: "Three", suit: "Diamonds", value: 3 }, { name: "Ace", suit: "Diamonds", value: 11 }];
+
+	function pickCard() {
+	  var random = Math.floor(Math.random() * cards.length);
+	  var card = cards[random];
+	  cards.splice(random, 1);
+	  return card;
+	}
 
 /***/ }
 /******/ ]);
