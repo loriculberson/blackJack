@@ -47,7 +47,7 @@
 	'use strict';
 
 	var $ = __webpack_require__(1);
-	__webpack_require__(2);
+	var deck = __webpack_require__(2);
 
 	function dealCards() {
 	  dealDealerHand($('#dealer-hand'));
@@ -66,7 +66,7 @@
 	}
 
 	function dealCard(whoseHand, hidden) {
-	  var card = pickCard();
+	  var card = deck.pickCard();
 	  var cardView = $('<li>' + card.name + ' of ' + card.suit + ' Value ' + card.value + '</li>');
 	  if (hidden) {
 	    cardView.addClass('hide-card');
@@ -1537,16 +1537,32 @@
 /* 2 */
 /***/ function(module, exports) {
 
+	//complete deck of cards
+
 	"use strict";
 
-	var cards = [{ name: "A", suit: "Hearts", value: 11 }, { name: "K", suit: "Spades", value: 10 }, { name: "Q", suit: "Clubs", value: 10 }, { name: "Two", suit: "Hearts", value: 2 }, { name: "Four", suit: "Spades", value: 4 }, { name: "Seven", suit: "Clubs", value: 7 }, { name: "Jack", suit: "Hearts", value: 10 }, { name: "Three", suit: "Diamonds", value: 3 }, { name: "Ace", suit: "Diamonds", value: 11 }];
+	var allCards = [{ name: "Ace", suit: "Hearts", value: 11 }, { name: "K", suit: "Spades", value: 10 }, { name: "Q", suit: "Clubs", value: 10 }, { name: "Two", suit: "Hearts", value: 2 }, { name: "Four", suit: "Spades", value: 4 }, { name: "Seven", suit: "Clubs", value: 7 }, { name: "Jack", suit: "Hearts", value: 10 }, { name: "Three", suit: "Diamonds", value: 3 }, { name: "Ace", suit: "Diamonds", value: 11 }];
 
-	function pickCard() {
-	  var random = Math.floor(Math.random() * cards.length);
-	  var card = cards[random];
-	  cards.splice(random, 1);
-	  return card;
-	}
+	//cards that are shuffled and in play. This set of cards
+	//gets modified through course of game
+	var cards = allCards.slice();
+
+	module.exports = {
+	  pickCard: function pickCard() {
+	    var random = Math.floor(Math.random() * cards.length);
+	    var card = cards[random];
+	    cards.splice(random, 1);
+	    return card;
+	  },
+
+	  shuffle: function shuffle() {
+	    cards = allCards.slice();
+	  },
+
+	  remainingCardCount: function remainingCardCount() {
+	    return cards.length;
+	  }
+	};
 
 /***/ }
 /******/ ]);

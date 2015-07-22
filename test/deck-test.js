@@ -2,7 +2,7 @@ const assert = require('chai').assert;
 var expect = require('chai').expect;
 const deck = require('../lib/deck');
 
-describe('deck functionality', function () {
+describe('Deck', function () {
 
 
   it('exists', function () {
@@ -33,5 +33,3 @@ describe('deck functionality', function () {
 
 
 });
-
-

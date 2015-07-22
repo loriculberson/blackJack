@@ -64,16 +64,32 @@
 /* 2 */
 /***/ function(module, exports) {
 
+	//complete deck of cards
+
 	"use strict";
 
-	var cards = [{ name: "A", suit: "Hearts", value: 11 }, { name: "K", suit: "Spades", value: 10 }, { name: "Q", suit: "Clubs", value: 10 }, { name: "Two", suit: "Hearts", value: 2 }, { name: "Four", suit: "Spades", value: 4 }, { name: "Seven", suit: "Clubs", value: 7 }, { name: "Jack", suit: "Hearts", value: 10 }, { name: "Three", suit: "Diamonds", value: 3 }, { name: "Ace", suit: "Diamonds", value: 11 }];
+	var allCards = [{ name: "Ace", suit: "Hearts", value: 11 }, { name: "K", suit: "Spades", value: 10 }, { name: "Q", suit: "Clubs", value: 10 }, { name: "Two", suit: "Hearts", value: 2 }, { name: "Four", suit: "Spades", value: 4 }, { name: "Seven", suit: "Clubs", value: 7 }, { name: "Jack", suit: "Hearts", value: 10 }, { name: "Three", suit: "Diamonds", value: 3 }, { name: "Ace", suit: "Diamonds", value: 11 }];
 
-	function pickCard() {
-	  var random = Math.floor(Math.random() * cards.length);
-	  var card = cards[random];
-	  cards.splice(random, 1);
-	  return card;
-	}
+	//cards that are shuffled and in play. This set of cards
+	//gets modified through course of game
+	var cards = allCards.slice();
+
+	module.exports = {
+	  pickCard: function pickCard() {
+	    var random = Math.floor(Math.random() * cards.length);
+	    var card = cards[random];
+	    cards.splice(random, 1);
+	    return card;
+	  },
+
+	  shuffle: function shuffle() {
+	    cards = allCards.slice();
+	  },
+
+	  remainingCardCount: function remainingCardCount() {
+	    return cards.length;
+	  }
+	};
 
 /***/ },
 /* 3 */
@@ -99,8 +115,8 @@
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
-		module.hot.accept("!!/Users/loriculberson/Turing/module4/projects/blackJack/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/loriculberson/Turing/module4/projects/blackJack/node_modules/mocha/mocha.css", function() {
-			var newContent = require("!!/Users/loriculberson/Turing/module4/projects/blackJack/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/loriculberson/Turing/module4/projects/blackJack/node_modules/mocha/mocha.css");
+		module.hot.accept("!!/Users/fredblock/code/Turing/projects_4/blackJack/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/fredblock/code/Turing/projects_4/blackJack/node_modules/mocha/mocha.css", function() {
+			var newContent = require("!!/Users/fredblock/code/Turing/projects_4/blackJack/node_modules/mocha-loader/node_modules/css-loader/index.js!/Users/fredblock/code/Turing/projects_4/blackJack/node_modules/mocha/mocha.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -7531,23 +7547,34 @@
 
 	var assert = __webpack_require__(12).assert;
 	var expect = __webpack_require__(12).expect;
-	// , deck = { hK: 10 };
-	var Deck = __webpack_require__(2);
+	var deck = __webpack_require__(2);
 
-	describe('creation of deck', function () {
+	describe('deck functionality', function () {
 
-	  it('exits', function () {
-	    assert(Deck);
+	  it('exists', function () {
+	    assert(deck);
 	  });
 
-	  it('should construct a deck object', function () {
-	    assert(new Deck());
+	  it('starts with 9 cards', function () {
+	    deck.shuffle();
+
+	    assert.equal(deck.remainingCardCount(), 9);
 	  });
 
-	  it('should return the correct value for a card', function () {
-	    var deck = new Deck();
+	  it('pickCard removes card from deck', function () {
+	    deck.shuffle();
+	    deck.pickCard();
+	    assert.equal(deck.remainingCardCount(), 8);
+	  });
 
-	    expect(deck).to.have.property('hK').to.eql(10);
+	  it('shuffling deck resets the deck to a full set', function () {
+	    deck.shuffle();
+	    assert.equal(deck.remainingCardCount(), 9);
+	    deck.pickCard();
+	    deck.pickCard();
+	    assert.equal(deck.remainingCardCount(), 7);
+	    deck.shuffle();
+	    assert.equal(deck.remainingCardCount(), 9);
 	  });
 	});
 
