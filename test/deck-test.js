@@ -25,6 +25,7 @@ describe('Deck', function () {
     deck.shuffle();
     assert.equal(deck.remainingCardCount(), 9);
     deck.pickCard();
+    // console.log(deck.cards.name);
     deck.pickCard();
     assert.equal(deck.remainingCardCount(), 7);
     deck.shuffle();
