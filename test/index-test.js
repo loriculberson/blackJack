@@ -1,8 +1,9 @@
 const chai = require('chai');
 const assert = chai.assert;
 require('./deck-test.js');
+require('./hand-test.js');
 
-describe('my test suite', function () {
+describe('Test Suite', function () {
   it('should work', function () {
     assert(true);
   });

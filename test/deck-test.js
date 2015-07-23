@@ -2,7 +2,7 @@ const assert = require('chai').assert;
 var expect = require('chai').expect;
 const deck = require('../lib/deck');
 
-describe('deck functionality', function () {
+describe('Deck', function () {
 
 
   it('exists', function () {
@@ -25,6 +25,7 @@ describe('deck functionality', function () {
     deck.shuffle();
     assert.equal(deck.remainingCardCount(), 9);
     deck.pickCard();
+    // console.log(deck.cards.name);
     deck.pickCard();
     assert.equal(deck.remainingCardCount(), 7);
     deck.shuffle();
@@ -33,5 +34,3 @@ describe('deck functionality', function () {
 
 
 });
-
-
