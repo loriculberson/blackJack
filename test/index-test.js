@@ -1,7 +1,7 @@
 const chai = require('chai');
 const assert = chai.assert;
 require('./deck-test.js');
-require('./score-test.js');
+require('./hand-test.js');
 
 describe('Test Suite', function () {
   it('should work', function () {
