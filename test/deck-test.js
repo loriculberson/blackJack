@@ -9,27 +9,27 @@ describe('Deck', function () {
     assert(deck);
   });
 
-  it('starts with 9 cards', function () {
+  it('starts with 52 cards', function () {
     deck.shuffle();
 
-    assert.equal(deck.remainingCardCount(), 9);
+    assert.equal(deck.remainingCardCount(), 52);
   });
 
   it('pickCard removes card from deck', function () {
     deck.shuffle();
     deck.pickCard();
-    assert.equal(deck.remainingCardCount(), 8);
+    assert.equal(deck.remainingCardCount(), 51);
   });
 
   it('shuffling deck resets the deck to a full set', function () {
     deck.shuffle();
-    assert.equal(deck.remainingCardCount(), 9);
+    assert.equal(deck.remainingCardCount(), 52);
     deck.pickCard();
     // console.log(deck.cards.name);
     deck.pickCard();
-    assert.equal(deck.remainingCardCount(), 7);
+    assert.equal(deck.remainingCardCount(), 50);
     deck.shuffle();
-    assert.equal(deck.remainingCardCount(), 9);
+    assert.equal(deck.remainingCardCount(), 52);
   });
 
 
