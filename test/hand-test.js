@@ -18,7 +18,7 @@ describe('Hand', function () {
     hand.receiveCard(card2);
 
     assert.equal(hand.score(), 12);
-    // console.log(deck);
+
   })
 
   it('displays BUST if score is greater than 21', function () {
