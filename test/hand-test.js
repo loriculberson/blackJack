@@ -32,7 +32,7 @@ describe('Hand', function () {
     hand.receiveCard(card3);
 
     assert.equal(hand.score(), 22);
-    
+
 
   })
 
