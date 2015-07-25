@@ -18,7 +18,6 @@ describe('Hand', function () {
     hand.receiveCard(card2);
 
     assert.equal(hand.score(), 13);
-    // console.log(deck);
   })
 
 });
