@@ -24,20 +24,22 @@ function addClickListenerToHitButton () {
   $("#hit-me-button").on("click", playerTakesAHit)
 }
 
+
 function scorePlayerHand () {
   playerHand.score();
   playerHand.renderTo($("#player-hand"));
   playerHand.renderScore($("#player-score"));
+  // console.log(playerHand.score());
 
   if (playerHand.score() > 21) {
     playerHand.renderMessage($("#player-message"), "<h2>BUSTED! <br> Sorry! Try Again!</h2>");
-    game.newGame(playerHand);
-
+    game.newGame();
   } else if (playerHand.score() === 21) {
     playerHand.renderMessage($("#player-message"), "<h2>Congratulations! You Won!</h2>");
-    game.newGame(playerHand);
+    game.newGame();
   }
 }
+
 
 function scoreDealerHand () {
   dealerHand.score();
@@ -53,18 +55,19 @@ function scoreDealerHand () {
   // }
 }
 
+
 function dealDealerHand(dealerHand) {
   dealOneCard(dealerHand, $("#dealer-hand"));
   dealOneCard(dealerHand, $("#dealer-hand"));
 }
 
+
 function playerStays() {
   game.buttonsDuringStay();
+  dealOneCard(dealerHand, $("#dealer-hand"));
+  scoreDealerHand();
 
-  while (dealerHand.score() < 17) {
-    dealOneCard(dealerHand, $("#dealer-hand"));
-    scoreDealerHand();
-  }
+  // hit until >= 17
 
   if (dealerHand.score() > 21) {
     dealerHand.renderMessage($("#dealer-message"), "<h2>Dealer Busted - PLAYER WINS!</h2>");
@@ -72,13 +75,32 @@ function playerStays() {
   } else if (dealerHand.score() === 21) {
     dealerHand.renderMessage($("#dealer-message"), "<h2>Oh well – the dealer won!</h2>");
     game.newGame();
-  } else if (dealerHand.score() >= 17) {
-    // game.evaluateFinalScores();
-    dealerHand.renderMessage($("#dealer-message"), "<h2>evaluate like crazy!</h2>");
-  }
+  } else if (dealerHand.score() < 21) {
+    dealOneCard(dealerHand, $("#dealer-hand"));
+    scoreDealerHand();
 
-    // dealerHand.renderMessage($("#dealer-message"), "<h2>Dealer got 17...</h2>");
+      // if still not 21
+      if (dealerHand.score() > 21) {
+        dealerHand.renderMessage($("#dealer-message"), "<h2>Dealer Busted - PLAYER WINS!</h2>");
+        game.newGame();
+      } else if (dealerHand.score() === 21) {
+        dealerHand.renderMessage($("#dealer-message"), "<h2>Oh well – the dealer won!</h2>");
+        game.newGame();
+      }
+      } else if (dealerHand.score() < 21) {
+        dealOneCard(dealerHand, $("#dealer-hand"));
+        scoreDealerHand();
+      }
+
+
+    // dealerHand.renderMessage($("#dealer-message"), "<h2>Oh well – the dealer won!</h2>");
+    // game.newGame();
+  }
 }
+
+
+
+
 
 function dealOneCard (whoseHand, jQueryDestination) {
   var card = deck.pickCard();
@@ -86,10 +108,12 @@ function dealOneCard (whoseHand, jQueryDestination) {
   whoseHand.renderTo(jQueryDestination);
 }
 
+
 function dealPlayerHand (playerHand){
   dealOneCard(playerHand, $("#player-hand"));
   dealOneCard(playerHand, $("#player-hand"));
 }
+
 
 function dealHands () {
   dealPlayerHand(playerHand);
@@ -98,6 +122,7 @@ function dealHands () {
   scoreDealerHand();
   game.buttonsDuringGame();
 }
+
 
 function addClickListenerToDealButton() {
   $("#deal-cards-button").on("click", dealHands)
@@ -110,7 +135,6 @@ function addClickListenerToStayButton() {
 function addClickListenerNewGameButton() {
   $("#new-game-button").on("click", dealHands)
 }
-
 
 game.initialize();
 addClickListenerToDealButton();

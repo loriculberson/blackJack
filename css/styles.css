@@ -1,6 +1,29 @@
 body {
   background: green;
+  margin: 30px;
 }
+
+
+/*TYPOGRAPHY*/
+h1 {
+  font-family: Rye, Arial, serif; font-weight: 400;
+  color: black;
+  margin-left: 25px;
+}
+
+h2, h3 {
+  font-family: Rye, Arial, serif; font-weight: 400;
+  color: black;
+}
+
+.buttons {
+  margin-left: 20px;
+}
+
+.center-text {
+  text-align: center;
+}
+
 
 .card  {
   max-height: 80px;
