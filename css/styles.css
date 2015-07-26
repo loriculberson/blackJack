@@ -2,6 +2,20 @@ body {
   background: green;
 }
 
+
+/*TYPOGRAPHY*/
+h1 {
+  font-family: Rye, Arial, serif; font-weight: 400;
+  color: black;
+}
+
+h2, h3 {
+  font-family: Rye, Arial, serif; font-weight: 400;
+  color: black;
+}
+
+
+
 .card  {
   max-height: 80px;
   margin: 4px;
