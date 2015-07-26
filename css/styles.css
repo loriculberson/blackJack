@@ -1,5 +1,6 @@
 body {
   background: green;
+  margin: 30px;
 }
 
 
@@ -7,6 +8,7 @@ body {
 h1 {
   font-family: Rye, Arial, serif; font-weight: 400;
   color: black;
+  margin-left: 25px;
 }
 
 h2, h3 {
@@ -14,7 +16,13 @@ h2, h3 {
   color: black;
 }
 
+.buttons {
+  margin-left: 20px;
+}
 
+.center-text {
+  text-align: center;
+}
 
 .card  {
   max-height: 80px;
@@ -34,6 +42,7 @@ h2, h3 {
   margin: 20px;
   padding: 0px 10px;
   width: 400px;
+  border-radius: 5px;
 }
 
 .hand  {
