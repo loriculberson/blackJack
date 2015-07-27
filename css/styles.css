@@ -5,15 +5,17 @@ body {
 
 .container  {
   margin: 0 auto;
-  width: 500px;
+  width: 440px;
+  text-align: center;
 }
 
 
 /*TYPOGRAPHY*/
 h1 {
+  font-size: 1.5em;
   font-family: Rye, Arial, serif; font-weight: 400;
   color: black;
-  margin-left: 25px;
+  /*margin-left: 25px;*/
 }
 
 h2, h3 {
@@ -22,7 +24,7 @@ h2, h3 {
 }
 
 .buttons {
-  margin-left: 20px;
+  /*margin-left: 20px;*/
 }
 
 .center-text {
@@ -58,9 +60,7 @@ h2, h3 {
 }
 
 #dealer-score  {
-  /*clear: left;*/
 }
 
 #player-score  {
-  /*clear: left;*/
 }
