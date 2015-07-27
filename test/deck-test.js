@@ -32,5 +32,7 @@ describe('Deck', function () {
     assert.equal(deck.remainingCardCount(), 52);
   });
 
+  //test remaining card count yields a shuffle of full deck
+
 
 });
