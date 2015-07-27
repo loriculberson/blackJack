@@ -3,6 +3,11 @@ body {
   margin: 20px;
 }
 
+.container  {
+  margin: 0 auto;
+  width: 500px;
+}
+
 
 /*TYPOGRAPHY*/
 h1 {

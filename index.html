@@ -9,33 +9,38 @@
 
   <body>
 
-    <div class="intro">
-      <h1>Let's Play Some Blackjack!</h1>
+    <div class="container">
+
+      <div class="intro">
+        <h1>Let's Play Some Blackjack!</h1>
+      </div>
+
+      <div class="win-counter">
+      </div>
+
+      <div class="hand-box">
+        <h3>Dealer Hand </h3>
+        <div id="dealer-hand"></div>
+        <div id="dealer-score"></div>
+        <div id="dealer-message"></div>
+      </div>
+
+      <div class="hand-box">
+        <h3>Player Hand </h3>
+        <div id="player-hand"></div>
+        <div id="player-score"></div>
+        <div id="player-message"></div>
+      </div>
+
+      <div class="buttons">
+        <button type="button" id="deal-cards-button">Deal</button>
+        <button type="button" id="hit-me-button">Hit me!</button>
+        <button type="button" id="stay-button">Stay</button>
+        <button type="button" id="new-game-button">Play Again</button>
+      </div>
+      
     </div>
 
-    <div class="win-counter">
-    </div>
-
-    <div class="hand-box">
-      <h3>Dealer Hand </h3>
-      <div id="dealer-hand"></div>
-      <div id="dealer-score"></div>
-      <div id="dealer-message"></div>
-    </div>
-
-    <div class="hand-box">
-      <h3>Player Hand </h3>
-      <div id="player-hand"></div>
-      <div id="player-score"></div>
-      <div id="player-message"></div>
-    </div>
-
-    <div class="buttons">
-      <button type="button" id="deal-cards-button">Deal</button>
-      <button type="button" id="hit-me-button">Hit me!</button>
-      <button type="button" id="stay-button">Stay</button>
-      <button type="button" id="new-game-button">Play Again</button>
-    </div>
 
     <script src="main.bundle.js"></script>
   </body>
