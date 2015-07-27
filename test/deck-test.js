@@ -1,10 +1,6 @@
 const assert = require('chai').assert;
 var expect = require('chai').expect;
 const deck = require('../lib/deck');
-// var Hand = require('./hand');
-
-// var playerHand = new Hand();
-// var dealerHand = new Hand();
 
 describe('Deck', function () {
 
@@ -28,7 +24,6 @@ describe('Deck', function () {
     deck.shuffle();
     assert.equal(deck.remainingCardCount(), 52);
     deck.pickCard();
-    // console.log(deck.cards.name);
     deck.pickCard();
     assert.equal(deck.remainingCardCount(), 50);
     deck.shuffle();
