@@ -49,7 +49,7 @@ describe('Hand', function () {
     assert.equal(hand.score(), 21);
   })
 
-  it.skip('can properly score and Ace as 11 or 1 if it is a hit card', function (){
+  it ('can properly score and Ace as 11 or 1 if it is a hit card', function (){
     deck.shuffle();
     var hand = new Hand();
 
