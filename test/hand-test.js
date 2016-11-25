@@ -49,7 +49,7 @@ describe('Hand', function () {
     assert.equal(hand.score(), 21);
   })
 
-  it ('can properly score and Ace as 11 or 1 if it is a hit card', function (){
+  it ('can properly score and Ace as 11 or 1 if it is a first card', function (){
     deck.shuffle();
     var hand = new Hand();
 
@@ -62,5 +62,24 @@ describe('Hand', function () {
     hand.receiveCard(hitCard);
 
     assert.equal(hand.score(), 13);
+  })
+
+  it ('can properly score and Ace as 11 or 1 if it is a second card', function (){
+    deck.shuffle();
+    var hand = new Hand();
+
+    var card1 = { name: "Four", suit: "Diamonds", value: 4 }
+    var card2 = { name: "Ace", suit: "Hearts", value: 11 }
+    var hitCard = { name: "Eight", suit: "Clubs", value: 8 }
+    var hitCard2 = { name: "Ace", suit: "Diamonds", value: 11 }
+    var hitCard3 = { name: "King", suit: "Hearts", value: 10 }
+    
+    hand.receiveCard(card1);
+    hand.receiveCard(card2);
+    hand.receiveCard(hitCard);
+    hand.receiveCard(hitCard2);
+    hand.receiveCard(hitCard3);
+
+    assert.equal(hand.score(), 24);
   })
 });
